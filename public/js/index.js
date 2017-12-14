@@ -47,15 +47,15 @@ jQuery('#message-form').on('submit',function(e){
 
 var locationButton = jQuery('#send-location');
 locationButton.on('click', function(){
-    if(navigator.geolocation){
-        return alert("Geolocation is not supported");
-    }
+    // if(navigator.geolocation){
+    //     return alert("Geolocation is not supported");
+    // }
 
-    navigator.geolocation.getCurrentPosition(function(){
-        console.log(Position);
+    navigator.geolocation.getCurrentPosition(function(position){
+        console.log('position: ',position);
         socket.emit('createLocationMessage', {
-            lattitude: Position.lattitude,
-            longitude: Position.longitude
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
         });
     },function(){
         alert('Unable to fetch location');
