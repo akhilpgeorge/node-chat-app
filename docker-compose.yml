@@ -5,13 +5,13 @@ services:
   nodejs:
     build:
       context: ./bin/nodejs
-    image: jmenghani13/atom_messenger:1.0.0
-    container_name: "atom_messenger_node"
+    image: akhilpgeorge/node-chat-app:1.0.0
+    container_name: "node-chat-app"
     restart: "always"
     ports:
       - "${NODEJSPORT}:3000"
     volumes:
-      - ${NODEJS_WRK_DIR-./web}:/usr/share/nodejs/
+      - ${NODEJS_WRK_DIR-./www}:/usr/share/nodejs/
       - ${NODEJS_LOGS_DIR-./logs/nodejs/}:/root/.npm/_logs/
     working_dir: /usr/share/nodejs/
     environment:
