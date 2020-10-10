@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  # NodeJS
+  nodejs:
+    build:
+      context: ./bin/nodejs
+    image: jmenghani13/atom_messenger:1.0.0
+    container_name: "atom_messenger_node"
+    restart: "always"
+    ports:
+      - "${NODEJSPORT}:3000"
+    volumes:
+      - ${NODEJS_WRK_DIR-./web}:/usr/share/nodejs/
+      - ${NODEJS_LOGS_DIR-./logs/nodejs/}:/root/.npm/_logs/
+    working_dir: /usr/share/nodejs/
+    environment:
+      - NODE_ENV=${NODEJSDEPLOYMENTMODEL}
+    command: "npm start"
